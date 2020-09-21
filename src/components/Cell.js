@@ -5,7 +5,7 @@ const Cell = (props) => {
   return (
     <div
       className={cell.status ? "cell alive" : "cell"}
-      onClick={() => toggleCell(cell)}
+      onMouseDown={() => toggleCell(cell)}
     ></div>
   );
 };

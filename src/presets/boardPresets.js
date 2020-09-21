@@ -1,6 +1,6 @@
 import Cell from "../classes/Cell";
 
-const boardHeight = 30;
+export const boardHeight = 30;
 export const boardWidth = 30;
 
 export const createEmptyBoard = () => {
