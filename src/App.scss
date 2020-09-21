@@ -1,0 +1,25 @@
+* {
+  box-sizing: border-box;
+}
+
+.App {
+  text-align: center;
+}
+
+.board {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 800px;
+  margin: 15px auto;
+}
+
+.alive {
+  background-color: black;
+}
+
+.cell {
+  border: 1px solid black;
+  width: 20px;
+  height: 20px;
+}
