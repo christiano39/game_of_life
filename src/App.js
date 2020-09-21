@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   boardWidth,
   boardHeight,
@@ -14,6 +14,7 @@ function App() {
   const [board, setBoard] = useState(oscillators());
   const [genNumber, setGenNumber] = useState(0);
   const [genHistory, setGenHistory] = useState([board]);
+  const [running, setRunning] = useState(false);
 
   const toggleCell = (cell) => {
     const newBoard = board.map((row) => {
@@ -55,9 +56,9 @@ function App() {
         }
       });
     });
-    setBoard(nextBoard);
     setGenNumber(genNumber + 1);
-    return nextBoard;
+    setBoard(nextBoard);
+    // return nextBoard;
   };
 
   const getPreviousGen = () => {
@@ -65,7 +66,7 @@ function App() {
     setGenHistory(genHistory.slice(0, genHistory.length - 1));
     setBoard(prevGen);
     setGenNumber(genNumber - 1);
-    return prevGen;
+    // return prevGen;
   };
 
   const reset = () => {
@@ -75,19 +76,46 @@ function App() {
     setGenNumber(0);
   };
 
+  const start = () => {
+    setRunning(true);
+  };
+
+  const stop = () => {
+    setRunning(false);
+  };
+
+  useEffect(() => {
+    if (running) {
+      setTimeout(() => {
+        setGenNumber(genNumber + 1);
+        getNextGen();
+      }, 500);
+    }
+  }, [running, board]);
+
   return (
     <div className="App">
       <h1>The Game of Life</h1>
       <p>{`Generation ${genNumber}`}</p>
       <Board board={board} toggleCell={toggleCell} />
-      <button onClick={reset}>Reset</button>
+      <button disabled={running} onClick={reset}>
+        Reset
+      </button>
       <button
-        disabled={genHistory.length > 1 ? false : true}
+        disabled={genHistory.length > 1 && !running ? false : true}
         onClick={getPreviousGen}
       >
         Previous Gen
       </button>
-      <button onClick={getNextGen}>Next Gen</button>
+      <button disabled={running} onClick={getNextGen}>
+        Next Gen
+      </button>
+      <button disabled={running} onClick={start}>
+        Start
+      </button>
+      <button disabled={!running} onClick={stop}>
+        Stop
+      </button>
     </div>
   );
 }
