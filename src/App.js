@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { createEmptyBoard } from "./presets/boardPresets";
+import { createEmptyBoard, oscillators } from "./presets/boardPresets";
 import Cell from "./classes/Cell";
 
 import Board from "./components/Board";
 import "./App.scss";
 
 function App() {
-  const [board, setBoard] = useState(createEmptyBoard());
+  const [board, setBoard] = useState(oscillators());
 
   const toggleCell = (cell) => {
     const newBoard = board.map((row) => {
@@ -18,6 +18,7 @@ function App() {
       });
     });
     setBoard(newBoard);
+    console.log(cell);
   };
 
   return (
