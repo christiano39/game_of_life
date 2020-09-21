@@ -2,8 +2,38 @@
   box-sizing: border-box;
 }
 
+html {
+  font-size: 62.5%;
+}
+
+h1 {
+  font-size: 4rem;
+}
+
+button {
+  background-color: inherit;
+  border: none;
+  font-size: 2.5rem;
+  padding: 0.5rem;
+  margin: 1.5rem;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
 .App {
   text-align: center;
+  font-size: 2.2rem;
+}
+
+.active {
+  border: 2px solid black;
+  border-radius: 0.5rem;
+}
+
+.bold {
+  font-weight: bold;
 }
 
 .board {

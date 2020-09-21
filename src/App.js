@@ -8,6 +8,7 @@ import {
 import Cell from "./classes/Cell";
 
 import Board from "./components/Board";
+import Controls from "./components/Controls";
 import "./App.scss";
 
 function App() {
@@ -15,17 +16,20 @@ function App() {
   const [genNumber, setGenNumber] = useState(0);
   const [genHistory, setGenHistory] = useState([board]);
   const [running, setRunning] = useState(false);
+  const [speed, setSpeed] = useState(500);
 
   const toggleCell = (cell) => {
-    const newBoard = board.map((row) => {
-      return row.map((c) => {
-        if (cell.x === c.x && cell.y === c.y) {
-          return new Cell(cell.x, cell.y, c.status ? 0 : 1);
-        }
-        return c;
+    if (!running) {
+      const newBoard = board.map((row) => {
+        return row.map((c) => {
+          if (cell.x === c.x && cell.y === c.y) {
+            return new Cell(cell.x, cell.y, c.status ? 0 : 1);
+          }
+          return c;
+        });
       });
-    });
-    setBoard(newBoard);
+      setBoard(newBoard);
+    }
   };
 
   const getNextGen = () => {
@@ -35,17 +39,33 @@ function App() {
         const x = c.x;
         const y = c.y;
         let sum = 0;
-        if (x >= 1 && x < boardHeight - 1 && y >= 1 && y < boardWidth - 1) {
-          sum =
-            board[x - 1][y - 1].status +
-            board[x - 1][y].status +
-            board[x - 1][y + 1].status +
-            board[x][y + 1].status +
-            board[x + 1][y + 1].status +
-            board[x + 1][y].status +
-            board[x + 1][y - 1].status +
-            board[x][y - 1].status;
+        let top = x - 1;
+        let bottom = x + 1;
+        let left = y - 1;
+        let right = y + 1;
+
+        if (top < 0) {
+          top = boardHeight - 1;
         }
+        if (bottom >= boardHeight) {
+          bottom = 0;
+        }
+        if (left < 0) {
+          left = boardWidth - 1;
+        }
+        if (right >= boardWidth) {
+          right = 0;
+        }
+
+        sum =
+          board[top][left].status +
+          board[top][y].status +
+          board[top][right].status +
+          board[x][right].status +
+          board[bottom][right].status +
+          board[bottom][y].status +
+          board[bottom][left].status +
+          board[x][left].status;
 
         if ((sum === 2 || sum === 3) && c.status === 1) {
           return new Cell(x, y, 1);
@@ -87,9 +107,8 @@ function App() {
   useEffect(() => {
     if (running) {
       setTimeout(() => {
-        setGenNumber(genNumber + 1);
         getNextGen();
-      }, 500);
+      }, speed);
     }
   }, [running, board]);
 
@@ -98,24 +117,17 @@ function App() {
       <h1>The Game of Life</h1>
       <p>{`Generation ${genNumber}`}</p>
       <Board board={board} toggleCell={toggleCell} />
-      <button disabled={running} onClick={reset}>
-        Reset
-      </button>
-      <button
-        disabled={genHistory.length > 1 && !running ? false : true}
-        onClick={getPreviousGen}
-      >
-        Previous Gen
-      </button>
-      <button disabled={running} onClick={getNextGen}>
-        Next Gen
-      </button>
-      <button disabled={running} onClick={start}>
-        Start
-      </button>
-      <button disabled={!running} onClick={stop}>
-        Stop
-      </button>
+      <Controls
+        running={running}
+        reset={reset}
+        genHistory={genHistory}
+        getPreviousGen={getPreviousGen}
+        getNextGen={getNextGen}
+        start={start}
+        stop={stop}
+        setSpeed={setSpeed}
+        speed={speed}
+      />
     </div>
   );
 }
