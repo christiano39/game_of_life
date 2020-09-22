@@ -28,7 +28,6 @@ function App() {
   const [customPresets, setCustomPresets] = useState(fetchCustomPresets());
 
   const toggleCell = (cell) => {
-    console.log(cell);
     if (!running) {
       const newBoard = board.map((row) => {
         return row.map((c) => {
@@ -113,13 +112,15 @@ function App() {
   };
 
   const setPreset = (preset) => {
-    if (typeof preset === "function") {
-      setBoard(preset());
-    } else {
-      setBoard(preset);
+    if (!running) {
+      if (typeof preset === "function") {
+        setBoard(preset());
+      } else {
+        setBoard(preset);
+      }
+      setGenHistory([[...board]]);
+      setGenNumber(0);
     }
-    setGenHistory([[...board]]);
-    setGenNumber(0);
   };
 
   const savePreset = () => {
@@ -129,6 +130,16 @@ function App() {
       "customPresets",
       JSON.stringify([...customPresets, board])
     );
+  };
+
+  const deletePreset = (e, preset) => {
+    e.stopPropagation();
+    const newPresetList = customPresets.filter((p) => {
+      return !(p === preset);
+    });
+
+    setCustomPresets(newPresetList);
+    localStorage.setItem("customPresets", JSON.stringify(newPresetList));
   };
 
   useEffect(() => {
@@ -159,7 +170,11 @@ function App() {
             savePreset={savePreset}
           />
         </div>
-        <Presets setPreset={setPreset} customPresets={customPresets} />
+        <Presets
+          setPreset={setPreset}
+          customPresets={customPresets}
+          deletePreset={deletePreset}
+        />
       </div>
     </div>
   );

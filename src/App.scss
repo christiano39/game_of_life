@@ -49,6 +49,16 @@ button {
       li {
         cursor: pointer;
         margin: 10px 0;
+
+        &:hover .hidden {
+          visibility: visible;
+        }
+
+        .hidden {
+          font-size: 1.8rem;
+          margin-left: 5px;
+          visibility: hidden;
+        }
       }
     }
   }

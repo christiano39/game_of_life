@@ -9,7 +9,7 @@ import {
 } from "../presets/boardPresets";
 
 const Presets = (props) => {
-  const { setPreset, customPresets } = props;
+  const { setPreset, customPresets, deletePreset } = props;
   let presetNum = 0;
 
   return (
@@ -25,10 +25,13 @@ const Presets = (props) => {
           customPresets.map((preset) => {
             presetNum++;
             return (
-              <li
-                key={presetNum}
-                onClick={() => setPreset(preset)}
-              >{`Custom Preset #${presetNum}`}</li>
+              <li key={presetNum} onClick={() => setPreset(preset)}>
+                {`Custom Preset #${presetNum} `}
+                <i
+                  className="fas fa-trash hidden"
+                  onClick={(e) => deletePreset(e, preset)}
+                ></i>
+              </li>
             );
           })}
       </ul>
