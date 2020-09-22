@@ -9,6 +9,7 @@ import Cell from "./classes/Cell";
 import Board from "./components/Board";
 import Controls from "./components/Controls";
 import Presets from "./components/Presets";
+import Rules from "./components/Rules";
 import "./App.scss";
 
 const fetchCustomPresets = () => {
@@ -175,6 +176,7 @@ function App() {
           customPresets={customPresets}
           deletePreset={deletePreset}
         />
+        <Rules />
       </div>
     </div>
   );
