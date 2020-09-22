@@ -4,6 +4,9 @@ import {
   boardHeight,
   createEmptyBoard,
   oscillators,
+  gliders,
+  smallShips,
+  largeShips,
 } from "./presets/boardPresets";
 import Cell from "./classes/Cell";
 
@@ -140,6 +143,9 @@ function App() {
           <h2>Presets</h2>
           <ul>
             <li onClick={() => setPreset(oscillators)}>Oscillators</li>
+            <li onClick={() => setPreset(gliders)}>Gliders</li>
+            <li onClick={() => setPreset(smallShips)}>Small Spaceships</li>
+            <li onClick={() => setPreset(largeShips)}>Large Spaceships</li>
           </ul>
         </div>
       </div>

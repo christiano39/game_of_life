@@ -17,6 +17,7 @@ export const createEmptyBoard = () => {
 
 export const oscillators = () => {
   let board = createEmptyBoard();
+
   board[2][5].status = 1;
   board[2][6].status = 1;
   board[3][6].status = 1;
@@ -132,6 +133,136 @@ export const oscillators = () => {
   board[25][22].status = 1;
   board[25][21].status = 1;
   board[25][23].status = 1;
+
+  return board;
+};
+
+export const gliders = () => {
+  let board = createEmptyBoard();
+
+  board[2][4].status = 1;
+  board[3][4].status = 1;
+  board[4][4].status = 1;
+  board[4][5].status = 1;
+  board[3][6].status = 1;
+
+  board[7][8].status = 1;
+  board[8][8].status = 1;
+  board[9][8].status = 1;
+  board[9][9].status = 1;
+  board[8][10].status = 1;
+
+  board[12][12].status = 1;
+  board[13][12].status = 1;
+  board[14][12].status = 1;
+  board[14][13].status = 1;
+  board[13][14].status = 1;
+
+  board[17][16].status = 1;
+  board[18][16].status = 1;
+  board[19][16].status = 1;
+  board[19][17].status = 1;
+  board[18][18].status = 1;
+
+  board[22][21].status = 1;
+  board[23][21].status = 1;
+  board[24][21].status = 1;
+  board[24][22].status = 1;
+  board[23][23].status = 1;
+
+  return board;
+};
+
+export const smallShips = () => {
+  let board = createEmptyBoard();
+
+  board[1][2].status = 1;
+  board[3][2].status = 1;
+  board[4][3].status = 1;
+  board[4][4].status = 1;
+  board[4][5].status = 1;
+  board[4][6].status = 1;
+  board[3][6].status = 1;
+  board[2][6].status = 1;
+  board[1][5].status = 1;
+
+  board[9][8].status = 1;
+  board[11][8].status = 1;
+  board[12][9].status = 1;
+  board[12][10].status = 1;
+  board[12][11].status = 1;
+  board[12][12].status = 1;
+  board[11][12].status = 1;
+  board[10][12].status = 1;
+  board[9][11].status = 1;
+
+  board[17][15].status = 1;
+  board[19][15].status = 1;
+  board[20][16].status = 1;
+  board[20][18].status = 1;
+  board[20][17].status = 1;
+  board[20][19].status = 1;
+  board[19][19].status = 1;
+  board[18][19].status = 1;
+  board[17][18].status = 1;
+
+  board[24][23].status = 1;
+  board[26][23].status = 1;
+  board[27][24].status = 1;
+  board[27][25].status = 1;
+  board[27][26].status = 1;
+  board[27][27].status = 1;
+  board[26][27].status = 1;
+  board[25][27].status = 1;
+  board[24][26].status = 1;
+
+  return board;
+};
+
+export const largeShips = () => {
+  let board = createEmptyBoard();
+
+  board[4][3].status = 1;
+  board[3][4].status = 1;
+  board[3][5].status = 1;
+  board[3][6].status = 1;
+  board[3][7].status = 1;
+  board[3][8].status = 1;
+  board[3][9].status = 1;
+  board[4][9].status = 1;
+  board[5][9].status = 1;
+  board[6][8].status = 1;
+  board[7][6].status = 1;
+  board[7][5].status = 1;
+  board[6][3].status = 1;
+
+  board[16][10].status = 1;
+  board[15][11].status = 1;
+  board[15][12].status = 1;
+  board[15][13].status = 1;
+  board[15][14].status = 1;
+  board[15][15].status = 1;
+  board[15][16].status = 1;
+  board[16][16].status = 1;
+  board[17][16].status = 1;
+  board[18][15].status = 1;
+  board[19][13].status = 1;
+  board[19][12].status = 1;
+  board[18][10].status = 1;
+
+  board[25][21].status = 1;
+  board[24][22].status = 1;
+  board[24][23].status = 1;
+  board[24][24].status = 1;
+  board[24][25].status = 1;
+  board[24][26].status = 1;
+  board[24][27].status = 1;
+  board[25][27].status = 1;
+  board[26][27].status = 1;
+  board[27][26].status = 1;
+  board[28][24].status = 1;
+  board[28][23].status = 1;
+  board[27][21].status = 1;
 
   return board;
 };
