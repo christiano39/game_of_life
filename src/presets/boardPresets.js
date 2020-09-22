@@ -266,3 +266,17 @@ export const largeShips = () => {
 
   return board;
 };
+
+export const dieHard = () => {
+  let board = createEmptyBoard();
+
+  board[12][8].status = 1;
+  board[12][9].status = 1;
+  board[13][9].status = 1;
+  board[13][13].status = 1;
+  board[13][14].status = 1;
+  board[13][15].status = 1;
+  board[11][14].status = 1;
+
+  return board;
+};

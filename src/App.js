@@ -7,6 +7,7 @@ import {
   gliders,
   smallShips,
   largeShips,
+  dieHard,
 } from "./presets/boardPresets";
 import Cell from "./classes/Cell";
 
@@ -146,6 +147,7 @@ function App() {
             <li onClick={() => setPreset(gliders)}>Gliders</li>
             <li onClick={() => setPreset(smallShips)}>Small Spaceships</li>
             <li onClick={() => setPreset(largeShips)}>Large Spaceships</li>
+            <li onClick={() => setPreset(dieHard)}>Die Hard</li>
           </ul>
         </div>
       </div>
