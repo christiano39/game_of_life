@@ -12,13 +12,14 @@ const Controls = (props) => {
     stop,
     speed,
     setSpeed,
+    savePreset,
   } = props;
 
   return (
     <div className="controls-container">
       <div className="step-controls">
         <button disabled={running} onClick={() => reset(createEmptyBoard)}>
-          <i className="fas fa-undo-alt"></i>
+          <i className="fas fa-undo-alt" aria-label="reset"></i>
         </button>
         <button
           disabled={genHistory.length > 1 && !running ? false : true}
@@ -34,6 +35,9 @@ const Controls = (props) => {
         </button>
         <button disabled={!running} onClick={stop}>
           <i className="fas fa-stop"></i>
+        </button>
+        <button disabled={running} onClick={savePreset}>
+          <i className="fas fa-save"></i>
         </button>
       </div>
       <div className="speed-controls">

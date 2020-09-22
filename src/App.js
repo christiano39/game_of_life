@@ -3,17 +3,21 @@ import {
   boardWidth,
   boardHeight,
   createEmptyBoard,
-  oscillators,
-  gliders,
-  smallShips,
-  largeShips,
-  dieHard,
 } from "./presets/boardPresets";
 import Cell from "./classes/Cell";
 
 import Board from "./components/Board";
 import Controls from "./components/Controls";
+import Presets from "./components/Presets";
 import "./App.scss";
+
+const fetchCustomPresets = () => {
+  if (localStorage.getItem("customPresets")) {
+    return JSON.parse(localStorage.getItem("customPresets"));
+  } else {
+    return [];
+  }
+};
 
 function App() {
   const [board, setBoard] = useState(createEmptyBoard());
@@ -21,6 +25,7 @@ function App() {
   const [genHistory, setGenHistory] = useState([board]);
   const [running, setRunning] = useState(false);
   const [speed, setSpeed] = useState(500);
+  const [customPresets, setCustomPresets] = useState(fetchCustomPresets());
 
   const toggleCell = (cell) => {
     console.log(cell);
@@ -108,9 +113,22 @@ function App() {
   };
 
   const setPreset = (preset) => {
-    setBoard(preset());
+    if (typeof preset === "function") {
+      setBoard(preset());
+    } else {
+      setBoard(preset);
+    }
     setGenHistory([[...board]]);
     setGenNumber(0);
+  };
+
+  const savePreset = () => {
+    const newPreset = board;
+    setCustomPresets([...customPresets, newPreset]);
+    localStorage.setItem(
+      "customPresets",
+      JSON.stringify([...customPresets, board])
+    );
   };
 
   useEffect(() => {
@@ -138,18 +156,10 @@ function App() {
             stop={stop}
             setSpeed={setSpeed}
             speed={speed}
+            savePreset={savePreset}
           />
         </div>
-        <div className="presets">
-          <h2>Presets</h2>
-          <ul>
-            <li onClick={() => setPreset(oscillators)}>Oscillators</li>
-            <li onClick={() => setPreset(gliders)}>Gliders</li>
-            <li onClick={() => setPreset(smallShips)}>Small Spaceships</li>
-            <li onClick={() => setPreset(largeShips)}>Large Spaceships</li>
-            <li onClick={() => setPreset(dieHard)}>Die Hard</li>
-          </ul>
-        </div>
+        <Presets setPreset={setPreset} customPresets={customPresets} />
       </div>
     </div>
   );
