@@ -27,6 +27,31 @@ button {
   font-size: 2.2rem;
 }
 
+.main {
+  display: flex;
+
+  .sim-container{
+    width: 70%;
+  }
+
+  .presets {
+    display: flex;
+    flex-direction: column;
+
+    ul {
+      list-style: none;
+      text-decoration: underline;
+      margin: 0;
+      padding: 0;
+
+      li {
+        cursor: pointer;
+        margin: 10px 0;
+      }
+    }
+  }
+}
+
 .active {
   border: 2px solid black;
   border-radius: 0.5rem;

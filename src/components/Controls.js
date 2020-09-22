@@ -1,4 +1,5 @@
 import React from "react";
+import { createEmptyBoard } from "../presets/boardPresets";
 
 const Controls = (props) => {
   const {
@@ -16,7 +17,7 @@ const Controls = (props) => {
   return (
     <div className="controls-container">
       <div className="step-controls">
-        <button disabled={running} onClick={reset}>
+        <button disabled={running} onClick={() => reset(createEmptyBoard)}>
           <i className="fas fa-undo-alt"></i>
         </button>
         <button

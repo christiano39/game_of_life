@@ -12,13 +12,14 @@ import Controls from "./components/Controls";
 import "./App.scss";
 
 function App() {
-  const [board, setBoard] = useState(oscillators());
+  const [board, setBoard] = useState(createEmptyBoard());
   const [genNumber, setGenNumber] = useState(0);
   const [genHistory, setGenHistory] = useState([board]);
   const [running, setRunning] = useState(false);
   const [speed, setSpeed] = useState(500);
 
   const toggleCell = (cell) => {
+    console.log(cell);
     if (!running) {
       const newBoard = board.map((row) => {
         return row.map((c) => {
@@ -78,7 +79,6 @@ function App() {
     });
     setGenNumber(genNumber + 1);
     setBoard(nextBoard);
-    // return nextBoard;
   };
 
   const getPreviousGen = () => {
@@ -86,15 +86,14 @@ function App() {
     setGenHistory(genHistory.slice(0, genHistory.length - 1));
     setBoard(prevGen);
     setGenNumber(genNumber - 1);
-    // return prevGen;
   };
 
-  const reset = () => {
-    const firstGen = genHistory[0];
-    setGenHistory(genHistory.slice(0, 1));
-    setBoard(firstGen);
-    setGenNumber(0);
-  };
+  // const reset = () => {
+  //   const firstGen = genHistory[0];
+  //   setGenHistory(genHistory.slice(0, 1));
+  //   setBoard(firstGen);
+  //   setGenNumber(0);
+  // };
 
   const start = () => {
     setRunning(true);
@@ -102,6 +101,12 @@ function App() {
 
   const stop = () => {
     setRunning(false);
+  };
+
+  const setPreset = (preset) => {
+    setBoard(preset());
+    setGenHistory([[...board]]);
+    setGenNumber(0);
   };
 
   useEffect(() => {
@@ -115,19 +120,29 @@ function App() {
   return (
     <div className="App">
       <h1>The Game of Life</h1>
-      <p>{`Generation ${genNumber}`}</p>
-      <Board board={board} toggleCell={toggleCell} />
-      <Controls
-        running={running}
-        reset={reset}
-        genHistory={genHistory}
-        getPreviousGen={getPreviousGen}
-        getNextGen={getNextGen}
-        start={start}
-        stop={stop}
-        setSpeed={setSpeed}
-        speed={speed}
-      />
+      <div className="main">
+        <div className="sim-container">
+          <p>{`Generation ${genNumber}`}</p>
+          <Board board={board} toggleCell={toggleCell} />
+          <Controls
+            running={running}
+            reset={setPreset}
+            genHistory={genHistory}
+            getPreviousGen={getPreviousGen}
+            getNextGen={getNextGen}
+            start={start}
+            stop={stop}
+            setSpeed={setSpeed}
+            speed={speed}
+          />
+        </div>
+        <div className="presets">
+          <h2>Presets</h2>
+          <ul>
+            <li onClick={() => setPreset(oscillators)}>Oscillators</li>
+          </ul>
+        </div>
+      </div>
     </div>
   );
 }

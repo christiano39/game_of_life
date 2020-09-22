@@ -90,5 +90,48 @@ export const oscillators = () => {
   board[13][11].status = 1;
   board[14][13].status = 1;
 
+  board[21][3].status = 1;
+  board[22][3].status = 1;
+  board[23][3].status = 1;
+
+  board[23][9].status = 1;
+  board[23][10].status = 1;
+  board[23][11].status = 1;
+  board[22][10].status = 1;
+  board[22][11].status = 1;
+  board[22][12].status = 1;
+
+  board[1][22].status = 1;
+  board[1][23].status = 1;
+  board[2][23].status = 1;
+  board[2][22].status = 1;
+  board[3][24].status = 1;
+  board[3][25].status = 1;
+  board[4][25].status = 1;
+  board[4][24].status = 1;
+
+  board[14][21].status = 1;
+  board[14][22].status = 1;
+  board[14][23].status = 1;
+  board[15][22].status = 1;
+  board[16][22].status = 1;
+  board[17][21].status = 1;
+  board[17][22].status = 1;
+  board[17][23].status = 1;
+  board[19][22].status = 1;
+  board[19][21].status = 1;
+  board[19][23].status = 1;
+  board[20][23].status = 1;
+  board[20][22].status = 1;
+  board[20][21].status = 1;
+  board[22][21].status = 1;
+  board[22][22].status = 1;
+  board[22][23].status = 1;
+  board[23][22].status = 1;
+  board[24][22].status = 1;
+  board[25][22].status = 1;
+  board[25][21].status = 1;
+  board[25][23].status = 1;
+
   return board;
 };
