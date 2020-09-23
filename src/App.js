@@ -43,6 +43,20 @@ function App() {
     }
   };
 
+  const activateCell = (cell) => {
+    if (!running) {
+      const newBoard = board.map((row) => {
+        return row.map((c) => {
+          if (cell.x === c.x && cell.y === c.y) {
+            return new Cell(cell.x, cell.y, 1);
+          }
+          return c;
+        });
+      });
+      setBoard(newBoard);
+    }
+  };
+
   const getNextGen = () => {
     setGenHistory([...genHistory, [...board]]);
     let nextBoard = board.map((row) => {
@@ -182,6 +196,7 @@ function App() {
           <Board
             board={board}
             toggleCell={toggleCell}
+            activateCell={activateCell}
             mouseIsDown={mouseIsDown}
           />
           <Controls

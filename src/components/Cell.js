@@ -1,11 +1,11 @@
 import React from "react";
 
 const Cell = (props) => {
-  const { cell, toggleCell, mouseIsDown } = props;
+  const { cell, toggleCell, mouseIsDown, activateCell } = props;
 
   const handleMouseEnter = () => {
     if (mouseIsDown) {
-      toggleCell(cell);
+      activateCell(cell);
     }
   };
 
