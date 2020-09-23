@@ -153,7 +153,10 @@ function App() {
 
   return (
     <div className="App">
-      <h1>The Game of Life</h1>
+      <header>
+        <h1>John Conway's Game of Life</h1>
+      </header>
+      <Rules />
       <div className="main">
         <div className="sim-container">
           <p>{`Generation ${genNumber}`}</p>
@@ -176,7 +179,6 @@ function App() {
           customPresets={customPresets}
           deletePreset={deletePreset}
         />
-        <Rules />
       </div>
     </div>
   );

@@ -19,25 +19,35 @@ const Controls = (props) => {
     <div className="controls-container">
       <div className="step-controls">
         <button disabled={running} onClick={() => reset(createEmptyBoard)}>
-          <i className="fas fa-undo-alt" aria-label="reset"></i>
+          <i
+            className={running ? "fas fa-undo-alt disabled" : "fas fa-undo-alt"}
+          ></i>
         </button>
         <button
           disabled={genHistory.length > 1 && !running ? false : true}
           onClick={getPreviousGen}
         >
-          <i className="fas fa-step-backward"></i>
+          <i
+            className={
+              running ? "fas fa-step-backward disabled" : "fas fa-step-backward"
+            }
+          ></i>
         </button>
         <button disabled={running} onClick={getNextGen}>
-          <i className="fas fa-step-forward"></i>
+          <i
+            className={
+              running ? "fas fa-step-forward disabled" : "fas fa-step-forward"
+            }
+          ></i>
         </button>
         <button disabled={running} onClick={start}>
-          <i className="fas fa-play"></i>
+          <i className={running ? "fas fa-play disabled" : "fas fa-play"}></i>
         </button>
         <button disabled={!running} onClick={stop}>
           <i className="fas fa-stop"></i>
         </button>
         <button disabled={running} onClick={savePreset}>
-          <i className="fas fa-save"></i>
+          <i className={running ? "fas fa-save disabled" : "fas fa-save"}></i>
         </button>
       </div>
       <div className="speed-controls">
