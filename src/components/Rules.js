@@ -14,6 +14,7 @@ const Rules = () => {
           If a cell is dead, but it has exactly 3 adjacent living cells, it will
           come back to life
         </li>
+        <li>If neither of the above applies to a cell, it will die</li>
       </ul>
     </div>
   );
