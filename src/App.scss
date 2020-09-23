@@ -8,6 +8,28 @@ html {
 
 h1 {
   font-size: 4rem;
+  color: #555B6E;
+}
+
+h2 {
+  margin: 0;
+  text-decoration: underline;
+}
+
+header {
+  //background-color: #BEE3DB;
+  padding: 15px;
+  background: linear-gradient(223deg, #89b0ae, #bee3db, #faf9f9);
+  background-size: 600% 600%;
+
+  animation: ScrollThrough 10s ease infinite;
+  clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+}
+
+@keyframes ScrollThrough {
+  0%{background-position:34% 0%}
+  50%{background-position:67% 100%}
+  100%{background-position:34% 0%}
 }
 
 button {
@@ -18,20 +40,46 @@ button {
   margin: 1.5rem;
 
   &:hover {
-    cursor: pointer;
+    cursor: default;
   }
+}
+
+i {
+  color: #FAF9F9;
+  cursor: pointer;
 }
 
 .App {
   text-align: center;
   font-size: 2.2rem;
+  color: #FAF9F9;
+  background-color: #333E4B;
+}
+
+.rules {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 50px;
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    li {
+      margin: 5px 0;
+    }
+  }
 }
 
 .main {
   display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
 
   .sim-container{
-    width: 50%;
+    width: 80%;
     display: flex;
     flex-direction: column;
   }
@@ -39,7 +87,7 @@ button {
   .presets {
     display: flex;
     flex-direction: column;
-    width: 15%;
+    justify-content: center;
 
     ul {
       list-style: none;
@@ -63,33 +111,22 @@ button {
       }
     }
   }
-
-  .rules {
-    width: 35%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0 30px;
-
-    ul {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-
-      li {
-        margin: 5px 0;
-      }
-    }
-  }
 }
 
 .active {
-  border: 2px solid black;
   border-radius: 0.5rem;
+  text-decoration: overline;
+  text-decoration-color: #FAF9F9;
+}
+
+.disabled {
+  color: #333E4B;
+  cursor: default;
 }
 
 .bold {
   font-weight: bold;
+  color:#FAF9F9;
 }
 
 .board {
@@ -97,6 +134,7 @@ button {
   flex-wrap: wrap;
   justify-content: center;
   margin: 15px auto;
+  background-color: #FAF9F9;
 }
 
 .alive {
