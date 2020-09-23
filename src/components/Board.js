@@ -15,6 +15,7 @@ const Board = (props) => {
               key={`${cell.x}, ${cell.y}`}
               cell={cell}
               toggleCell={props.toggleCell}
+              mouseIsDown={props.mouseIsDown}
             />
           );
         });

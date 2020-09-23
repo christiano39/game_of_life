@@ -27,6 +27,7 @@ function App() {
   const [running, setRunning] = useState(false);
   const [speed, setSpeed] = useState(500);
   const [customPresets, setCustomPresets] = useState(fetchCustomPresets());
+  const [mouseIsDown, setMouseIsDown] = useState(false);
 
   const toggleCell = (cell) => {
     if (!running) {
@@ -151,6 +152,24 @@ function App() {
     }
   }, [running, board]);
 
+  useEffect(() => {
+    const mouseDown = () => {
+      setMouseIsDown(true);
+    };
+
+    const mouseUp = () => {
+      setMouseIsDown(false);
+    };
+
+    document.addEventListener("mousedown", mouseDown);
+    document.addEventListener("mouseup", mouseUp);
+
+    return () => {
+      document.removeEventListener("mouseup", mouseUp);
+      document.removeEventListener("mousedown", mouseDown);
+    };
+  }, []);
+
   return (
     <div className="App">
       <header>
@@ -160,7 +179,11 @@ function App() {
       <div className="main">
         <div className="sim-container">
           <p>{`Generation ${genNumber}`}</p>
-          <Board board={board} toggleCell={toggleCell} />
+          <Board
+            board={board}
+            toggleCell={toggleCell}
+            mouseIsDown={mouseIsDown}
+          />
           <Controls
             running={running}
             reset={setPreset}
