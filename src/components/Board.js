@@ -7,7 +7,7 @@ const Board = (props) => {
   const { board } = props;
 
   return (
-    <div className="board" style={{ width: 20 * boardWidth }}>
+    <div className="board">
       {board.map((row) => {
         return row.map((cell) => {
           return (
