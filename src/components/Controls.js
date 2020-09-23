@@ -29,7 +29,9 @@ const Controls = (props) => {
         >
           <i
             className={
-              running ? "fas fa-step-backward disabled" : "fas fa-step-backward"
+              running || genHistory.length <= 1
+                ? "fas fa-step-backward disabled"
+                : "fas fa-step-backward"
             }
           ></i>
         </button>
